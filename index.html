@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrosswalkIQ - Medical Billing Validation</title>
+    <style>
+        :root { --bg-neutral: #f3f6f4; --text-dark: #18221D; --forest-green: #3E544A; --deep-charcoal: #2B3A33; }
+        body { margin: 0; background-color: var(--bg-neutral); color: var(--text-dark); font-family: sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
+        .portal-container { width: 100%; max-width: 580px; background: #ffffff; border-radius: 14px; box-shadow: 0 10px 30px rgba(24,34,29,0.06); border-top: 6px solid var(--forest-green); overflow: hidden; }
+        .portal-header { background: var(--text-dark); color: #ffffff; padding: 24px; text-align: center; }
+        .portal-header h1 { margin: 0; font-size: 28px; color: #e2e8e5; }
+        .portal-header p { margin: 6px 0 0 0; font-size: 13px; color: #8fa399; }
+        .portal-body { padding: 30px; }
+        .form-group { margin-bottom: 22px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--deep-charcoal); font-size: 14px; }
+        .form-group select { width: 100%; padding: 12px; border: 2px solid #cbd5e1; border-radius: 6px; font-size: 15px; background: #fff; }
+        .action-btn { width: 100%; padding: 14px; background: var(--forest-green); border: none; border-radius: 6px; color: #ffffff; font-size: 16px; font-weight: 700; cursor: pointer; }
+        .action-btn:hover { background: var(--deep-charcoal); }
+        .result-card { margin-top: 28px; padding: 20px; background: #f8faf9; border: 1px solid #e2e8e5; border-left: 5px solid var(--forest-green); display: none; }
+        .result-row { margin-bottom: 10px; font-size: 15px; }
+        .highlight { font-weight: bold; color: #c2410c; }
+        .portal-footer { background: var(--text-dark); padding: 24px; text-align: center; border-top: 1px solid var(--deep-charcoal); }
+        .dev-line { color: #8fa399; font-size: 12px; margin: 0 0 4px 0; }
+        .author-name { color: #ffffff; font-size: 18px; font-weight: 700; margin: 0; }
+        .designation { color: #cbd5e1; font-size: 12px; margin: 2px 0 12px 0; }
+        .tagline { color: #8fa399; font-size: 11px; margin: 0; font-style: italic; border-top: 1px solid var(--deep-charcoal); padding-top: 10px; }
+    </style>
+</head>
+<body>
+<div class="portal-container">
+    <header class="portal-header">
+        <h1>CrosswalkIQ</h1>
+        <p>Enterprise Medical Coding Validation Engine</p>
+    </header>
+    <main class="portal-body">
+        <div class="form-group">
+            <label>1. Select Insurance Group</label>
+            <select id="insurance" onchange="updateProcedures()">
+                <option value="Humana">Humana (Critical Logic)</option>
+                <option value="Freedom_Optimum">Freedom & Optimum</option>
+                <option value="Other_Insurances">Other Insurances (Follows Snip Chart)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>2. Select Procedure / Region</label>
+            <select id="procedure"></select>
+        </div>
+        <div class="form-group">
+            <label>3. Anesthesia Option</label>
+            <select id="anesthesia">
+                <option value="Local">Local</option>
+                <option value="MAC">MAC</option>
+            </select>
+        </div>
+        <button class="action-btn" onclick="processValidation()">Evaluate Codes (Enter)</button>
+        <section id="resultCard" class="result-card">
+            <h2>🎯 Output Validation</h2>
+            <div class="result-row"><strong>Target CPT(s):</strong> <span id="resCpt" class="highlight">-</span></div>
+            <div class="result-row"><strong>Anesthesia Code:</strong> <span id="resMac">-</span></div>
+            <div class="result-row"><strong>Baseline DX Code:</strong> <span id="resDx">-</span></div>
+            <div class="result-row" id="notesRow"><strong>System Alert:</strong> <span id="resNotes" style="color:red; font-weight:bold;">-</span></div>
+        </section>
+    </main>
+    <footer class="portal-footer">
+        <p class="dev-line">👨‍💻 Designed & Developed by</p>
+        <p class="author-name">Amar Shaw</p>
+        <p class="designation">Prior Authorization & RCM Specialist • Full-Stack Software Developer</p>
+        <p class="tagline">"Transforming US Healthcare Operational Friction into High-Velocity Web Automation."</p>
+    </footer>
+</div>
+<script>
+const humanaData = [
+    { id: "h1", name: "Lumbar Spine / LESI (MAC Case)", cpt: "62323", dx: "M47.816", reg: "Lumbar", mac: "01938" },
+    { id: "h2", name: "Lumbar ESI (Local Case)", cpt: "62323", dx: "G87.4", reg: "Lumbar", mac: "N/A" },
+    { id: "h3", name: "Lumbar MBNB (Max 2 Levels)", cpt: "64493, 64494", dx: "M47.816", reg: "Lumbar", mac: "01938" },
+    { id: "h4", name: "Lumbar RFA", cpt: "64635 x 2, 64636 x 2", dx: "-", reg: "Lumbar", mac: "01938 x 2" },
+    { id: "h5", name: "Lumbar TF Bilateral", cpt: "64483, 64484", dx: "-", reg: "Lumbar", mac: "01938", notes: "***Bilateral*** case" },
+    { id: "h6", name: "Cervical ESI", cpt: "62321", dx: "M54.12", reg: "Cervical", mac: "01937" }
+];
+const standardData = [
+    { id: "s1", name: "Bilateral Cervical MBNB (Max 3 Levels)", cpt: "64490, 64491, 64492", dx: "M54.2", reg: "Cervical", mac: "00600" },
+    { id: "s2", name: "Bilateral Lumbar MBNB (Max 3 Levels)", cpt: "64493, 64494, 64495", dx: "M47.816", reg: "Lumbar", mac: "00630" },
+    { id: "s3", name: "Lumbar Spine / LESI (MAC Case)", cpt: "62323, 00630", dx: "M47.816", reg: "Lumbar", mac: "00630" },
+    { id: "s4", name: "Hip & GTB Joint Injection (Local)", cpt: "20610", dx: "M47.816", reg: "Hip", mac: "01260" },
+    { id: "s5", name: "SIJ Injection (Local)", cpt: "27096", dx: "M51.16", reg: "Lumbar", mac: "00630" },
+    { id: "s6", name: "CESI", cpt: "62321", dx: "-", reg: "Cervical", mac: "00600" }
+];
+function updateProcedures() {
+    const ins = document.getElementById("insurance").value;
+    const procSelect = document.getElementById("procedure");
+    procSelect.innerHTML = "";
+    const list = ins === "Humana" ? humanaData : standardData;
+    list.forEach(p => {
+        let o = document.createElement("option"); o.value = p.id; o.innerText = p.name; procSelect.appendChild(o);
+    });
+}
+function processValidation() {
+    const ins = document.getElementById("insurance").value;
+    const pid = document.getElementById("procedure").value;
+    const anes = document.getElementById("anesthesia").value;
+    const list = ins === "Humana" ? humanaData : standardData;
+    const target = list.find(x => x.id === pid);
+    if(!target) return;
+    document.getElementById("resCpt").innerText = target.cpt;
+    document.getElementById("resDx").innerText = target.dx;
+    if (anes === "MAC") {
+        document.getElementById("resMac").innerText = target.mac;
+    } else {
+        document.getElementById("resMac").innerText = "None (Local Mode)";
+    }
+    if(target.notes) {
+        document.getElementById("notesRow").style.display = "block";
+        document.getElementById("resNotes").innerText = target.notes;
+    } else {
+        document.getElementById("notesRow").style.display = "none";
+    }
+    document.getElementById("resultCard").style.display = "block";
+}
+document.addEventListener("keypress", (e) => { if(e.key === "Enter") processValidation(); });
+updateProcedures();
+</script>
+</body>
+</html>
