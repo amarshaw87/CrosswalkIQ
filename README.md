@@ -39,6 +39,21 @@ To ensure zero cost and instant load speeds, CrosswalkIQ was structured entirely
 
 ---
 
+## 📊 Technical Stack & Lightweight Architecture
+
+GitHub automatically detects the language distribution of the **CrosswalkIQ** production engine as a fine-tuned combination of **HTML (41.7%)**, **Vue (38.9%)**, **TypeScript (17%)**, and **CSS (2.4%)**. 
+
+Here is the exact architectural breakdown of why this specific tech stack was engineered:
+
+* **Single-Page Application (SPA) Strategy:** The complete portal functions as a high-speed Single-Page Application. Since all datasets, drop-down configurations, and insurance filters exist inside a single unified template engine, there are zero page refreshes or sub-route delays. Everything runs dynamically in real-time.
+* **Ultra-Lightweight Footprint (Zero Latency):** By dropping heavy corporate servers, dynamic backend databases (like SQL/MongoDB), or multi-threaded cloud routing, the initial load footprint is almost negligible. The browser downloads the entire static compilation layer instantly, achieving optimal performance.
+* **Why Vue.js? (Reactive UI Binding):** Vue was selected to provide immediate declarative UI updates. The moment the user switches the insurance group selector from *Humana* to *Freedom*, Vue instantly rebuilds the structural option arrays in milliseconds without heavy DOM overhead.
+* **Why TypeScript? (Structural Accuracy Enforcer):** Medical billing leaves zero room for error. TypeScript acts as a compile-time static type guardian, strictly validating that each spinal procedure object locks in the mathematically correct combination of parameters.
+
+---
+
+
+
 ## 📊 Complete Operational Rules & Scenarios Engine
 
 The engine isolates incoming operational requests into **3 distinct, bulletproof functional buckets**:
