@@ -1,0 +1,10 @@
+import { ProcedureRule } from '../types/billing';
+
+export const humanaRules: ProcedureRule[] = [
+  { id: "h_lumb_esi", name: "Lumbar Spine / LESI (MAC Case)", cpt: "62323", dx: "M47.816", region: "Lumbar", h_mac: "01938" },
+  { id: "h_lumb_local", name: "Lumbar ESI (Local Case)", cpt: "62323", dx: "G87.4", region: "Lumbar", h_mac: "N/A" },
+  { id: "h_lumb_mbnb", name: "Lumbar MBNB (Max 2 Levels)", cpt: "64493, 64494", dx: "M47.816", region: "Lumbar", h_mac: "01938" },
+  { id: "h_lumb_rfa", name: "Lumbar RFA", cpt: "64635 x 2, 64636 x 2", dx: "-", region: "Lumbar", h_mac: "01938 x 2" },
+  { id: "h_tf_lumb", name: "Lumbar TF Bilateral", cpt: "64483, 64484", dx: "-", region: "Lumbar", h_mac: "01938", notes: "***Bilateral*** case" },
+  { id: "h_cerv_local", name: "Cervical ESI", cpt: "62321", dx: "M54.12", region: "Cervical", h_mac: "01937" }
+];
