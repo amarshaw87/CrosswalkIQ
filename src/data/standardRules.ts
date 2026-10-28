@@ -12,5 +12,5 @@ export const standardRules: ProcedureRule[] = [
   // 🌟 NEW ADDED CASE: Bilateral RFA Case
   { id: "s_rfa_bil", name: "RFA-BIL (Bilateral RFA)", cpt: "64633, 64634", dx: "-", region: "Thoracic" },
   // 🌟 NEW ADDED CASE: Freedom & Optimum TF Injection
-  { id: "s_tf_lumb_mac", name: "TF (Transforaminal Injection)-mac", cpt: "64483, 64484", dx: "M51.16", region: "Lumbar" }
+  { id: "s_tf_lumb_mac", name: "TF (Transforaminal Injection)", cpt: "64483, 64484", dx: "M51.16", region: "Lumbar" }
 ];
