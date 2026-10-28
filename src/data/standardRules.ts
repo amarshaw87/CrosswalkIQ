@@ -10,5 +10,7 @@ export const standardRules: ProcedureRule[] = [
   // 🌟 NEW ADDED CASE: Freedom & Optimum Shoulder Injection
   { id: "s_shldr_inj_mac", name: "SHLDR INJ (SHOULDER INJECTION) MAC", cpt: "20610", dx: "-", region: "NerveBlock", notes: "request through Portal may be auth is not required." },
   // 🌟 NEW ADDED CASE: Bilateral RFA Case
-  { id: "s_rfa_bil", name: "RFA-BIL (Bilateral RFA)", cpt: "64633, 64634", dx: "-", region: "Thoracic" }
+  { id: "s_rfa_bil", name: "RFA-BIL (Bilateral RFA)", cpt: "64633, 64634", dx: "-", region: "Thoracic" },
+  // 🌟 NEW ADDED CASE: Freedom & Optimum TF Injection
+  { id: "s_tf_lumb_mac", name: "TF (Transforaminal Injection)-mac", cpt: "64483, 64484", dx: "M51.16", region: "Lumbar" }
 ];
