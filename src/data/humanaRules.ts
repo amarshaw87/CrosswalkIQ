@@ -9,5 +9,8 @@ export const humanaRules: ProcedureRule[] = [
   { id: "h_cerv_local", name: "Cervical ESI", cpt: "62321", dx: "M54.12", region: "Cervical", h_mac: "01937" },
   
   // 🌟 NEW ADDED CASE: Humana SIJ Injection
-  { id: "h_sij_injection", name: "SIJ Injection (Sacroiliac Joint)", cpt: "27096", dx: "M51.16", region: "Lumbar", h_mac: "01938" }
+  { id: "h_sij_injection", name: "SIJ Injection (Sacroiliac Joint)", cpt: "27096", dx: "M51.16", region: "Lumbar", h_mac: "01938" },
+
+  // 🌟 NEW ADDED CASE: Humana Intercostal Local Injection
+  { id: "h_intercostal_local", name: "Intercoastal N.B (LOC INJECT (LOCAL INJECTION)", cpt: "64420, 64421", dx: "G58.0", region: "NerveBlock", h_mac: "N/A", notes: "req to pcp" }
 ];
