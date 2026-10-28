@@ -77,7 +77,8 @@ const humanaData = [
     { id: "h4", name: "Lumbar RFA", cpt: "64635 x 2, 64636 x 2", dx: "-", reg: "Lumbar", mac: "01938 x 2" },
     { id: "h5", name: "Lumbar TF Bilateral", cpt: "64483, 64484", dx: "-", reg: "Lumbar", mac: "01938", notes: "***Bilateral*** case" },
     { id: "h6", name: "Cervical ESI", cpt: "62321", dx: "M54.12", reg: "Cervical", mac: "01937" },
-    { id: "h7", name: "SIJ Injection (Sacroiliac Joint)", cpt: "27096", dx: "M51.16", reg: "Lumbar", mac: "01938" }
+    { id: "h7", name: "SIJ Injection (Sacroiliac Joint)", cpt: "27096", dx: "M51.16", reg: "Lumbar", mac: "01938" },
+    { id: "h8", name: "Intercoastal N.B (LOC INJECT (LOCAL INJECTION)", cpt: "64420, 64421", dx: "G58.0", reg: "NerveBlock", mac: "N/A", notes: "req to pcp" }
 ];
 const standardData = [
     { id: "s1", name: "Bilateral Cervical MBNB (Max 3 Levels)", cpt: "64490, 64491, 64492", dx: "M54.2", reg: "Cervical", mac: "00600" },
@@ -85,7 +86,9 @@ const standardData = [
     { id: "s3", name: "Lumbar Spine / LESI (MAC Case)", cpt: "62323, 00630", dx: "M47.816", reg: "Lumbar", mac: "00630" },
     { id: "s4", name: "Hip & GTB Joint Injection (Local)", cpt: "20610", dx: "M47.816", reg: "Hip", mac: "01260" },
     { id: "s5", name: "SIJ Injection (Local)", cpt: "27096", dx: "M51.16", reg: "Lumbar", mac: "00630" },
-    { id: "s6", name: "CESI", cpt: "62321", dx: "-", reg: "Cervical", mac: "00600" }
+    { id: "s6", name: "CESI", cpt: "62321", dx: "-", reg: "Cervical", mac: "00600" },
+    { id: "s7", name: "SHLDR INJ (SHOULDER INJECTION) MAC", cpt: "20610", dx: "-", reg: "NerveBlock", mac: "01610", notes: "request through Portal may be auth is not required." },
+    { id: "s8", name: "RFA-BIL (Bilateral RFA)", cpt: "64633, 64634", dx: "-", reg: "Thoracic", mac: "00600" }
 ];
 function updateProcedures() {
     const ins = document.getElementById("insurance").value;
