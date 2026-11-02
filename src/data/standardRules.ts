@@ -12,5 +12,12 @@ export const standardRules: ProcedureRule[] = [
   // 🌟 NEW ADDED CASE: Bilateral RFA Case
   { id: "s_rfa_bil", name: "RFA-BIL (Bilateral RFA)", cpt: "64633, 64634", dx: "-", region: "Thoracic" },
   // 🌟 NEW ADDED CASE: Freedom & Optimum TF Injection
-  { id: "s_tf_lumb_mac", name: "TF (Transforaminal Injection)", cpt: "64483, 64484", dx: "M51.16", region: "Lumbar" }
+  { id: "s_tf_lumb_mac", name: "TF (Transforaminal Injection)", cpt: "64483, 64484", dx: "M51.16", region: "Lumbar" },
+  // 🌟 NEW ADDED CASE: Other ins (11/02/2026)
+  { id: "s_cerv_mbnb_loc", name: "LOC CMBNB (LOCAL CERVICAL MBNB)/ CERVICAL", cpt: "64490, 64491", dx: "M54.2", region: "Cervical" },
+  { id: "s_lumb_rfa_mac", name: "RFA-Lumber (L)", cpt: "64635, 64636, 00630", dx: "M47.816, M47.817", region: "Lumbar" },
+  { id: "s_thor_mbnb_mac", name: "Thoracic - Mac", cpt: "64490, 64491, 00625", dx: "M47.894", region: "Thoracic" },
+  { id: "s_lumb_mbnb_loc", name: "Local Lumber MBNB (LIDOCAINE)", cpt: "64493, 64494", dx: "M47.816", region: "Lumbar" },
+  { id: "s_knee_inj_mac", name: "Knee", cpt: "20610, 01610", dx: "-", region: "Knee" },
+  { id: "s_lumb_esi_mac", name: "ESI - mac - Lumber", cpt: "62321, 00630", dx: "M48.061", region: "Lumbar" }
 ];
