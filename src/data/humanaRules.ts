@@ -10,7 +10,11 @@ export const humanaRules: ProcedureRule[] = [
   
   // 🌟 NEW ADDED CASE: Humana SIJ Injection
   { id: "h_sij_injection", name: "SIJ Injection (Sacroiliac Joint)", cpt: "27096", dx: "M51.16", region: "Lumbar", h_mac: "01938" },
-
+  
   // 🌟 NEW ADDED CASE: Humana Intercostal Local Injection
-  { id: "h_intercostal_local", name: "Intercoastal N.B (LOC INJECT (LOCAL INJECTION)", cpt: "64420, 64421", dx: "G58.0", region: "NerveBlock", h_mac: "N/A", notes: "req to pcp" }
+  { id: "h_intercostal_local", name: "Intercoastal N.B (LOC INJECT (LOCAL INJECTION)", cpt: "64420, 64421", dx: "G58.0", region: "NerveBlock", h_mac: "N/A", notes: "req to pcp" },
+  
+  // 🌟 NEW CASE ADDED : 11/02/2026
+  { id: "h_gtb_hip_mac", name: "LOCGTB /HIP (LOCAL GTB AND HIP)", cpt: "20610", dx: "M47.816", region: "Hip", h_mac: "01320" },
+  { id: "h_genicular_nb_mac", name: "Genicular N.B if region knee", cpt: "64454", dx: "M25.561", region: "Knee", h_mac: "01320" }
 ];
