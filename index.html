@@ -78,7 +78,11 @@ const humanaData = [
     { id: "h5", name: "Lumbar TF Bilateral", cpt: "64483, 64484", dx: "-", reg: "Lumbar", mac: "01938", notes: "***Bilateral*** case" },
     { id: "h6", name: "Cervical ESI", cpt: "62321", dx: "M54.12", reg: "Cervical", mac: "01937" },
     { id: "h7", name: "SIJ Injection (Sacroiliac Joint)", cpt: "27096", dx: "M51.16", reg: "Lumbar", mac: "01938" },
-    { id: "h8", name: "Intercoastal N.B (LOC INJECT (LOCAL INJECTION)", cpt: "64420, 64421", dx: "G58.0", reg: "NerveBlock", mac: "N/A", notes: "req to pcp" }
+    { id: "h8", name: "Intercoastal N.B (LOC INJECT (LOCAL INJECTION)", cpt: "64420, 64421", dx: "G58.0", reg: "NerveBlock", mac: "N/A", notes: "req to pcp" },
+    // 🌟 NEW ADDED CASE: Other ins (11/02/2026)
+    { id: "h9", name: "LOCGTB /HIP (LOCAL GTB AND HIP)", cpt: "20610", dx: "M47.816", reg: "Hip", mac: "01320" },
+    { id: "h10", name: "Genicular N.B if region knee", cpt: "64454", dx: "M25.561", reg: "Knee", mac: "01320" }
+
 ];
 const standardData = [
     { id: "s1", name: "Bilateral Cervical MBNB (Max 3 Levels)", cpt: "64490, 64491, 64492", dx: "M54.2", reg: "Cervical", mac: "00600" },
@@ -92,12 +96,12 @@ const standardData = [
     // New Scenerio Added
     { id: "s9", name: "TF (Transforaminal Injection)", cpt: "64483, 64484", dx: "M51.16", reg: "Lumbar", mac: "00630" },
     // 🌟 NEW ADDED CASE: Other ins (11/02/2026)
-    { id: "s_cerv_mbnb_mac", name: "LOC CMBNB (LOCAL CERVICAL MBNB)/ CERVICAL", cpt: "64490, 64491", dx: "M54.2", region: "Cervical", mac: "00600" },
-    { id: "s_lumb_rfa_mac", name: "RFA-Lumber (L)", cpt: "64635, 64636", dx: "M47.816, M47.817", region: "Lumbar", mac: "00630" },
-    { id: "s_thor_mbnb_mac", name: "Thoracic", cpt: "64490, 64491", dx: "M47.894", region: "Thoracic", mac: "00625" },
-    { id: "s_lumb_mbnb_mac", name: "Local Lumber MBNB (LIDOCAINE)", cpt: "64493, 64494", dx: "M47.816", region: "Lumbar", mac: "00630" },
-    { id: "s_knee_inj_mac", name: "Knee", cpt: "20610", dx: "-", region: "Knee", mac: "01610" },
-    { id: "s_lumb_esi_mac", name: "ESI Lumber", cpt: "62321", dx: "M48.061", region: "Lumbar", mac: "00630" }
+    { id: "s10", name: "LOC CMBNB (LOCAL CERVICAL MBNB)/ CERVICAL", cpt: "64490, 64491", dx: "M54.2", reg: "Cervical", mac: "00600" },
+    { id: "s11", name: "RFA-Lumber (L)", cpt: "64635, 64636", dx: "M47.816, M47.817", reg: "Lumbar", mac: "00630" },
+    { id: "s12", name: "Thoracic", cpt: "64490, 64491", dx: "M47.894", reg: "Thoracic", mac: "00625" },
+    { id: "s13", name: "Local Lumber MBNB (LIDOCAINE)", cpt: "64493, 64494", dx: "M47.816", reg: "Lumbar", mac: "00630" },
+    { id: "s14", name: "Knee", cpt: "20610", dx: "-", reg: "Knee", mac: "01610" },
+    { id: "s15", name: "ESI Lumber", cpt: "62321", dx: "M48.061", reg: "Lumbar", mac: "00630" }
 ];
 function updateProcedures() {
     const ins = document.getElementById("insurance").value;
